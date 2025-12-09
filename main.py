@@ -28,13 +28,28 @@ app.add_middleware(
 # Serve the static folder (current directory contains the static files)
 app.mount("/static", StaticFiles(directory=str(Path(__file__).parent)), name="static")
 
-# In-memory counts
-state = {
-    "scanCount": 0,
-    "joinCount": 0,
-    # optionally per-spot counts: {"spotA": 5}
-    "spots": {}
-}
+# Data persistence file
+DATA_FILE = Path(__file__).parent / "data.json"
+
+# Load initial state from file
+def load_state():
+    if DATA_FILE.exists():
+        try:
+            return json.loads(DATA_FILE.read_text())
+        except:
+            return {"scanCount": 0, "joinCount": 0, "spots": {}}
+    return {"scanCount": 0, "joinCount": 0, "spots": {}}
+
+# Save state to file
+def save_state():
+    try:
+        DATA_FILE.write_text(json.dumps(state))
+    except Exception as e:
+        logger.error(f"Error saving state: {e}")
+
+# In-memory counts (loaded from file)
+state = load_state()
+logger.info(f"Loaded state: {state}")
 
 # Simple WebSocket manager
 class ConnectionManager:
@@ -63,6 +78,8 @@ class ConnectionManager:
                 to_remove.append(ws)
         for ws in to_remove:
             self.disconnect(ws)
+        # Save state to file after broadcasting
+        save_state()
 
 manager = ConnectionManager()
 
