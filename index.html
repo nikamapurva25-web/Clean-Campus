@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Clean Campus Initiative</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+
+<body class="bg-green-50 font-[Inter] min-h-screen flex flex-col">
+
+  <!-- QR Counter Section -->
+  <section class="text-center py-10">
+    <h1 class="text-3xl font-bold text-green-700">Clean Campus Initiative</h1>
+    <p class="text-gray-600">My Campus. My Responsibility.</p>
+
+    <div class="mt-6">
+      <p class="text-xl font-semibold">scan count</p>
+      <p id="scanCount" class="text-5xl font-bold text-green-600 mt-2">0</p>
+    </div>
+  </section>
+
+  <!-- Join Button -->
+  <section class="text-center">
+    <button id="joinBtn"
+            class="px-6 py-3 bg-green-700 text-white rounded-lg shadow-lg hover:bg-green-800">
+      I Stand for a Clean Campus
+    </button>
+
+    <p class="mt-4 text-lg font-semibold">
+      People Joined:
+      <span id="joinCount" class="text-green-700 text-3xl">0</span>
+    </p>
+  </section>
+
+  <!-- Awareness Content -->
+  <section class="mt-10 px-6 max-w-2xl mx-auto">
+    <h2 class="text-2xl font-bold text-green-700">Why Clean Campus Matters</h2>
+    <ul class="mt-4 space-y-2 text-gray-700">
+      <li>✔ It improves health & hygiene</li>
+      <li>✔ Builds a positive learning environment</li>
+      <li>✔ Reduces pests and bad smell</li>
+      <li>✔ Encourages responsible behavior</li>
+    </ul>
+  </section>
+
+  <!-- Your script must load here -->
+  <script src="/static/script.js"></script>
+</body>
+</html>
